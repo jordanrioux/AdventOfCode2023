@@ -9,16 +9,6 @@ import (
 	"unicode"
 )
 
-func NewScannerFromFile(filepath string) (*os.File, *bufio.Scanner) {
-	file, err := os.Open(filepath)
-	if err != nil {
-		panic(err)
-	}
-	scanner := bufio.NewScanner(file)
-	scanner.Split(bufio.ScanLines)
-	return file, scanner
-}
-
 func main() {
 	file, scanner := NewScannerFromFile("input-p1.txt")
 	defer file.Close()
@@ -69,4 +59,15 @@ func SolveLoop(scanner bufio.Scanner) int {
 		sum += total
 	}
 	return sum
+}
+
+// Helpers
+func NewScannerFromFile(filepath string) (*os.File, *bufio.Scanner) {
+	file, err := os.Open(filepath)
+	if err != nil {
+		panic(err)
+	}
+	scanner := bufio.NewScanner(file)
+	scanner.Split(bufio.ScanLines)
+	return file, scanner
 }
