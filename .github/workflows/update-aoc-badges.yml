@@ -1,0 +1,28 @@
+name: Update Advent of Code badges
+on:
+  schedule:
+    - cron: "6 21 1-25 12 *"
+
+  workflow_dispatch: # Allow to manually start the workflow
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: joblo2213/aoc-badges-action@v3
+        with:
+          userid: 1928539
+          session: ${{ secrets.AOC_SESSION }}
+          year: 2023
+          leaderboard: "https://adventofcode.com/2023/leaderboard/private/view/1928539.json"
+          file: "README.md"
+          dayRegex: '(?<=https:\/\/img\.shields\.io\/badge\/day%20📅-)[0-9]+(?=-blue)'
+          starsRegex: '(?<=https:\/\/img\.shields\.io\/badge\/stars%20⭐-)[0-9]+(?=-yellow)'
+          daysCompletedRegex: '(?<=https:\/\/img\.shields\.io\/badge\/days%20completed-)[0-9]+(?=-red)'
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update badges
+          file_pattern: README.md
