@@ -36,7 +36,7 @@ var reversedSpelledOutNumbers = map[string]string{
 }
 
 func main() {
-	file, scanner := NewScannerFromFile("input-p2.txt")
+	file, scanner := NewScannerFromFile("input.txt")
 	defer file.Close()
 
 	sum := Solve(*scanner)

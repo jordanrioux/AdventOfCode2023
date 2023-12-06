@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	file, scanner := NewScannerFromFile("input-p1.txt")
+	file, scanner := NewScannerFromFile("input.txt")
 	defer file.Close()
 
 	//sum := SolveLoop(*scanner)
